@@ -1,0 +1,1 @@
+# Please refer to [this](https://docs.google.com/spreadsheets/d/1olmMtN1vGS0BG9WNqPeCB8DWjJqezOBQp5ERbtZHiTk/edit#gid=1492593591) chart for following the similar questions and notes for solving them!
