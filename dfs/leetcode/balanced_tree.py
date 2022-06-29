@@ -7,7 +7,7 @@ def balanced(root):
             return [True,0] # [is_balanced, height]
         
         left, right = dfs(root.left), dfs(root.right)
-        diff = abs(left - right)
+        diff = abs(left[1] - right[1])
 
         balanced = True if (left[0] and right[0] and diff <= 1) else False
 
