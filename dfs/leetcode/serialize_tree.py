@@ -21,12 +21,15 @@ def serialize(root): #preorder traversal
     
     
 def deserialize(data):
-    data = data.split(", ") #['s', 'h', 'r']
+    vals = data.split(",")
+    i = 0
+    
     def dfs():
-        val = data.pop(0)  #element pop for creating the nodes
-        if val == "None":
+        if vals[i] == "N":
+            i += 1
             return None
-        node = TreeNode(int(val))
+        node = TreeNode(int(vals[i]))
+        i += 1
         node.left = dfs()
         node.right = dfs()
         return node
