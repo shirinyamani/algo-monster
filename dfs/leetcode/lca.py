@@ -16,8 +16,6 @@ def LCA(root, p, q):
 
 
 def lca(root, p, q):
-    if not root or not q or not p:
-        return None
     def dfs(root):
         if not root:
             return None
