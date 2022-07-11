@@ -1,19 +1,17 @@
 def smallestRegion(regions, reg1, reg2):
     dic = {}
-    for reg in regions:
-        parent = reg[0]
-        for i in range(1, len(reg)):
-            dic[reg[i]] = parent
-    
-    dic_reg1 = {}
-    while reg1 in dic:
-        dic_reg1[reg1] = 1
-        reg1 = dic[reg1]
+    for region in regions:
+        parent = region[0]
+        for i in range(1,len(region)):
+            dic[region[i]] = parent
 
-    while reg2 in dic:
-        if reg2 in dic_reg1:
-            return reg2
-        reg2 = dic[reg2]
+    dic_region1 = {}
+    while region1 in dic:
+        dic_region1[region1] = 1
+        region1 = dic[region1]
 
-        
+    while region2 in dic:
+        if region2 in dic_region1:
+            return region2
+        region2 = dic[region2]
     return regions[0][0]
