@@ -1,30 +1,25 @@
-def search_rotared_arr(arr, left, right, target):
-    if not arr:
-        return -1
-
-    left, right = 0, len(arr) -1
+def search_rotared_arr(nums, target):
+    left, right = 0, len(nums) - 1
     while left <= right:
         mid = (left + right) // 2
-
-        if arr[mid] == target:
+        if nums[mid] == target:
             return mid
-
-        if arr[left] < arr[mid]: # left is normally ordered
-            if arr[left] < target <= arr[mid]:
-                return search_rotared_arr(arr, left, mid-1, target)
-            
+    
+        # left portion is sorted
+        if nums[left] <= nums[mid]:
+            if target > nums[mid] or target < nums[left]:
+                left = mid + 1
             else:
-                return search_rotared_arr(arr, mid+1, right, target)
+                right = mid - 1
 
-        elif arr[mid] < arr[right]: # right is normally ordered
-            if arr[mid] < target <= arr[right]:
-                return search_rotared_arr(arr, mid+1, right, target)
 
-            else:
-                return search_rotared_arr(arr, left, mid-1, target)
-
+        #right portion is sorted
         else:
-            if arr[left] == arr[mid]:
-                if arr[right] != arr[mid]:
-                    return search_rotared_arr(arr, mid+1, right, target)
-                
+            if target < nums[mid] or target > nums[right]:
+                right = mid -1
+
+            else:
+                left = mid + 1
+
+
+    return -1
