@@ -1,17 +1,30 @@
-def shipwithinDays(self, weights, D):
+def shipwithinDays(self, weights, days):
     """
     :type weights: List[int]
     :type D: int
     :rtype: int
     """
-    def binary_search(left, right):
-        if left > right:
-            return 0
+    if days == 1:
+        return sum(weights)
+
+    def minCapacity(capacity):
+        total,cur_day = 0, 1
+        for w in weights:
+            total += w
+
+            if total > capacity:
+                total = w
+                cur_day += 1
+
+                if cur_day > days:
+                    return False
+
+        return True
+
+    left, right = max(weights), sum(weights)
+    while left < right:
         mid = (left + right) // 2
-        if sum(weights[:mid]) > D:
-            return binary_search(left, mid - 1)
-        elif sum(weights[:mid]) < D:
-            return binary_search(mid + 1, right)
-        else:
-            return mid
-    return binary_search(1, len(weights))
+        if minCapacity(mid):
+            right = mid
+        else: left = mid + 1
+    return left
