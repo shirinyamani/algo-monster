@@ -6,10 +6,15 @@ class Solution(object):
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        anagrams = collections.defaultdict(list) 
-        for str in strs: 
-            sorted_str = ''.join(sorted(str)) 
-            anagrams[sorted_str].append(str)
-        return anagrams.values()
-
+        anagram = collections.defaultdict(list) #{key: [value]}
+        
+        for s in strs:
+            res = ''.join(sorted(s))
+            if res in anagram:
+                anagram[res].append(s)
+                
+            else:
+                anagram[res] = [s]
+                
+        return anagram.values()
                 
