@@ -1,5 +1,25 @@
-import collections
+from collections import Counter
 import heapq
+# Approach 0
+class Solution(object):
+    def topKFrequent(self, words, k):
+        """
+        :type words: List[str]
+        :type k: int
+        :rtype: List[str]
+        """
+        count = Counter(words) #{word:freq}
+        maxHeap = []
+        heapq.heapify(maxHeap)
+        for word, freq in count.items():
+            heapq.heappush(maxHeap, [-freq,word])
+        
+        res = []
+        for i in range(k):
+            out = heapq.heappop(maxHeap)
+            res.append(out[1])
+        return res
+
 #Aprroach 1
 def topKFrequent(words, k):
    counts = collections.Counter(words) #build a dictionary of words and their frequencies
